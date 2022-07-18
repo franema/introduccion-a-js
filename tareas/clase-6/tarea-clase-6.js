@@ -70,7 +70,7 @@ $botonAgregar.onclick = function agregar() {
     const $nuevoInput = document.createElement("input")
     document.querySelector("form").appendChild($nuevoInput)
     $nuevoInput.className = "integrante"
-    //$nuevoInput.type = "number"
+    $nuevoInput.type = "number"
     $nuevoInput.id = "numero" + salariosAnuales.length
 
 }
@@ -104,12 +104,17 @@ $botonCalcular.onclick = function calcular() {
                 salariosAnuales[i].remove()
                 calcular()
                 return false
+            } else {
+                calcularSalarioPromedio()
+                calcularSalarioMayor()
+                calcularSalarioMenor()
+                calcularSalarioMensual()
+                return false
             }
+
+
         }
     }
 
-    calcularSalarioPromedio()
-    calcularSalarioMayor()
-    calcularSalarioMenor()
-    calcularSalarioMensual()
+
 }
