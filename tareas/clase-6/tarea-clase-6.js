@@ -104,16 +104,16 @@ $botonCalcular.onclick = function calcular() {
                 salariosAnuales[i].remove()
                 calcular()
                 return false
-            } else {
-                calcularSalarioPromedio()
+            }           
+
+
+        }
+
+        calcularSalarioPromedio()
                 calcularSalarioMayor()
                 calcularSalarioMenor()
                 calcularSalarioMensual()
                 return false
-            }
-
-
-        }
     }
 
 
