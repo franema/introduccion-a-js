@@ -15,64 +15,55 @@ Al hacer click en "calcular", mostrar en un elemento pre-existente el mayor sala
 Punto bonus: si hay inputs vacíos, ignorarlos en el cálculo (no contarlos como 0).
 */
 
-function calcularSalarioMensual() {
-    const salariosAnuales = document.querySelectorAll(".integrante")
+const $botonCalcular = document.querySelector("#boton-calcular")
+const $botonAgregar = document.querySelector("#boton-agregar")
+const $botonQuitar = document.querySelector("#boton-quitar")
+const $botonLimpiar = document.querySelector("#boton-limpiar")
+
+function calcularSalarioMensual(salariosAnuales) {
     let salarioMensual = 0
     const mesesAnio = 12
     let salarioTotal = 0
     for (i = 0; i < salariosAnuales.length; i++) {
         salarioTotal = salarioTotal + Number(salariosAnuales[i].value)
     }
-    salarioMensual = salarioTotal / mesesAnio
-    document.querySelector("#resultado-mensual").textContent = `El salario mensual es ${salarioMensual}`
+    return salarioMensual = salarioTotal / mesesAnio
 }
 
-function calcularSalarioPromedio() {
-    const salariosAnuales = document.querySelectorAll(".integrante")
+function calcularSalarioPromedio(salariosAnuales) {
     let salarioTotal = 0
     let salarioPromedio = 0
     for (i = 0; i < salariosAnuales.length; i++) {
         salarioTotal = salarioTotal + Number(salariosAnuales[i].value)
     }
-    salarioPromedio = salarioTotal / salariosAnuales.length
-    document.querySelector("#resultado-promedio").textContent = `El salario promedio es ${salarioPromedio}`
+    return salarioPromedio = salarioTotal / salariosAnuales.length
 }
 
-function calcularSalarioMayor() {
-    const salariosAnuales = document.querySelectorAll(".integrante")
+function calcularSalarioMayor(salariosAnuales) {
     let salarioMayor = 0
     for (i = 0; i < salariosAnuales.length; i++) {
         if (Number(salariosAnuales[i].value) > salarioMayor) {
             salarioMayor = Number(salariosAnuales[i].value)
         }
     }
-    document.querySelector("#resultado-mayor").textContent = `El salario mayor es ${salarioMayor}`
+    return salarioMayor
 }
 
-function calcularSalarioMenor() {
-    const salariosAnuales = document.querySelectorAll(".integrante")
+function calcularSalarioMenor(salariosAnuales) {
     let salarioMenor = Number(salariosAnuales[0].value)
     for (i = 0; i < salariosAnuales.length; i++) {
         if (Number(salariosAnuales[i].value) < salarioMenor) {
             salarioMenor = Number(salariosAnuales[i].value)
         }
     }
-    document.querySelector("#resultado-menor").textContent = `El salario menor es ${salarioMenor}`
+    return salarioMenor
 }
 
-const $botonCalcular = document.querySelector("#boton-calcular")
-const $botonAgregar = document.querySelector("#boton-agregar")
-const $botonQuitar = document.querySelector("#boton-quitar")
-const $botonLimpiar = document.querySelector("#boton-limpiar")
-
 $botonAgregar.onclick = function agregar() {
-    const salariosAnuales = document.querySelectorAll(".integrante")
     const $nuevoInput = document.createElement("input")
     document.querySelector("form").appendChild($nuevoInput)
     $nuevoInput.className = "integrante"
     $nuevoInput.type = "number"
-    $nuevoInput.id = "numero" + salariosAnuales.length
-
 }
 
 $botonQuitar.onclick = function quitar() {
@@ -94,7 +85,7 @@ $botonLimpiar.onclick = function limpiar() {
 }
 
 $botonCalcular.onclick = function calcular() {
-    const salariosAnuales = document.querySelectorAll(".integrante")
+    let salariosAnuales = document.querySelectorAll(".integrante")
     if (salariosAnuales.length === 0) {
         document.querySelector("#resultado-promedio").textContent = `No ingresaste ningun valor`
         return false
@@ -104,17 +95,22 @@ $botonCalcular.onclick = function calcular() {
                 salariosAnuales[i].remove()
                 calcular()
                 return false
-            }           
-
-
-        }
-
-        calcularSalarioPromedio()
-                calcularSalarioMayor()
-                calcularSalarioMenor()
-                calcularSalarioMensual()
-                return false
+            }
+        } 
     }
-
-
+    darResultados(salariosAnuales)
+    return false
 }
+
+function darResultados(salariosAnuales) {
+    const salarioPromedio = calcularSalarioPromedio(salariosAnuales)
+    const salarioMayor = calcularSalarioMayor(salariosAnuales)
+    const salarioMenor = calcularSalarioMenor(salariosAnuales)
+    const salarioMensual = calcularSalarioMensual(salariosAnuales)
+
+    document.querySelector("#resultado-mensual").textContent = `El salario mensual es ${salarioMensual}`
+    document.querySelector("#resultado-promedio").textContent = `El salario promedio es ${salarioPromedio}`
+    document.querySelector("#resultado-mayor").textContent = `El salario mayor es ${salarioMayor}`
+    document.querySelector("#resultado-menor").textContent = `El salario menor es ${salarioMenor}`
+}
+
