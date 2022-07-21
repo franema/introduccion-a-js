@@ -25,8 +25,7 @@ while (numero >= 1) {
 // 16% 4 = 0 - en 16 tenemos 4 * 4
 // 19% 4 = 3 - en 19 tenemos 4 * 4 + 3, etc.
 
-// Calcular el promedio de todos los números en un array de números. (y ponerlo en una función)
-// ej.: calcularPromedio([10,5,4,2,8])
+
 
 for (let i = 1; i <= 50; i++) {
     if (i % 15 === 0) {
@@ -39,3 +38,19 @@ for (let i = 1; i <= 50; i++) {
         console.log(i)
     }
 }
+
+
+// Calcular el promedio de todos los números en un array de números. (y ponerlo en una función)
+// ej.: calcularPromedio([10,5,4,2,8])
+
+const numeros = [2,4,9,10,11,10,8,5]
+
+function promediarNumeros (numeros){
+    let sumatoriaNumeros = 0
+    for(i=0; i <numeros.length; i++) {
+        sumatoriaNumeros = sumatoriaNumeros + numeros[i]
+    }
+    return sumatoriaNumeros / numeros.length
+}
+
+console.log ("El promedio del array es " + promediarNumeros (numeros))
