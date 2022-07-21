@@ -86,21 +86,15 @@ $botonLimpiar.onclick = function limpiar() {
 
 $botonCalcular.onclick = function calcular() {
     let salariosAnuales = document.querySelectorAll(".integrante")
+    for (i = 0; i < salariosAnuales.length; i++) {
+        if (Number(salariosAnuales[i].value) === 0) {
+            salariosAnuales[i].remove()
+        }
+    }
+    salariosAnuales = document.querySelectorAll(".integrante")
     if (salariosAnuales.length === 0) {
         document.querySelector("#resultado-promedio").textContent = `No ingresaste ningun valor`
         return false
-    } else {
-        for (i = 0; i < salariosAnuales.length; i++) {
-            if (Number(salariosAnuales[i].value) === 0) {
-                salariosAnuales[i].remove()
-
-            }
-        }
-        salariosAnuales = document.querySelectorAll(".integrante")
-        if (salariosAnuales.length === 0) {
-            document.querySelector("#resultado-promedio").textContent = `No ingresaste ningun valor`
-            return false
-        }
     }
     darResultados(salariosAnuales)
     return false
