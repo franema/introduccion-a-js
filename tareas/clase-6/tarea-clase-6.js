@@ -93,10 +93,14 @@ $botonCalcular.onclick = function calcular() {
         for (i = 0; i < salariosAnuales.length; i++) {
             if (Number(salariosAnuales[i].value) === 0) {
                 salariosAnuales[i].remove()
-                calcular()
-                return false
+
             }
-        } 
+        }
+        salariosAnuales = document.querySelectorAll(".integrante")
+        if (salariosAnuales.length === 0) {
+            document.querySelector("#resultado-promedio").textContent = `No ingresaste ningun valor`
+            return false
+        }
     }
     darResultados(salariosAnuales)
     return false
