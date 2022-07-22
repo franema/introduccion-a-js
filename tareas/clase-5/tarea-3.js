@@ -26,7 +26,7 @@ $boton.onclick = function calcularDuracionVideos() {
 
 function sumarTiempoVideos (tiempo) {
     let tiempoTotal = 0
-    for (i=0; i<tiempo.length; i++) {
+    for (let i=0; i<tiempo.length; i++) {
         tiempoTotal = tiempoTotal + Number(tiempo[i].value)
     }
     return tiempoTotal
